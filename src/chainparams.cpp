@@ -121,8 +121,8 @@ public:
         consensus.premineAddress = "18wFZB62chDhYdapBnVEXX4y9hUvWs8yRu";
         consensus.premineValue = 2000000 * COIN;
 
-        consensus.posHeight      = 999999999999;
-        consensus.fidShiftHeight = 999999999999;
+        consensus.posHeight      = 999999999;
+        consensus.fidShiftHeight = 999999999;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -151,7 +151,7 @@ public:
             LogPrintf("old mainnet genesis nonce: %d\n", genesis.nNonce);
             LogPrintf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
             // deliberately empty for loop finds nonce value.
-            for(genesis.nNonce = 0; genesis.GetHash() > (~uint256(0) >> 20); genesis.nNonce++){ }
+            for(genesis.nNonce = 0; genesis.GetHash() > (~uint256S(0) >> 20); genesis.nNonce++){ }
             LogPrintf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
             LogPrintf("new mainnet genesis nonce: %d\n", genesis.nNonce);
             LogPrintf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
