@@ -49,7 +49,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "The Time 28/07/2018  His Majesty King Maha Vajiralongkorn Bodindradebayavarangkun";
-    const CScript genesisOutputScript = CScript() << ParseHex("04fe06a25ca1e7a2b91008c9c42aef0fe447509fbb2b133ad2cd421ce7d9a204a1be63b5d4f7dd12ec372b03bfb3d9c1105f45cee37da0a035d875f732743dc038") << OP_CHECKSIG;
+    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -149,9 +149,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x155a90924be24bc73b56d7a62f594e76b36e9852749f90f7d6d9659b97dba1dd"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("node1.b2x-segwit.io", false);
-        vSeeds.emplace_back("node2.b2x-segwit.io", false);
-        vSeeds.emplace_back("node3.b2x-segwit.io", false);
+        //vSeeds.emplace_back("node1.b2x-segwit.io", false);
+        //vSeeds.emplace_back("node2.b2x-segwit.io", false);
+        //vSeeds.emplace_back("node3.b2x-segwit.io", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,59);
