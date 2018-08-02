@@ -142,37 +142,11 @@ public:
         nDefaultPort = 8998;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1533212823,  5588306, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1533212823,  2906983, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-         if(genesis.GetHash() != uint256S("00000f3e2c2677f55df3af6fa595b64c1aab05a54e3433d0215f4e64fdbf775c") ){
-            arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
-            uint256 thash;
-            char *scratchpad;
-            scratchpad=new char[(1<<30)];
-            while(true){
-                int collisions=0;
-                thash = genesis.FindBestPatternHash(collisions,scratchpad,8);
-                LogPrintf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(),
-                hashTarget.ToString().c_str());
-                if (UintToArith256(thash) <= hashTarget)
-                    break;
-                genesis.nNonce=genesis.nNonce+10000;
-                if (genesis.nNonce == 0){
-                    LogPrintf("NONCE WRAPPED, incrementing time\n");
-                    ++genesis.nTime;
-                }
-            }
-            delete scratchpad;
-            LogPrintf("block.nTime = %u \n", genesis.nTime);
-            LogPrintf("block.nNonce = %u \n", genesis.nNonce);
-            LogPrintf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-            LogPrintf("block.nBits = %u \n", genesis.nBits);
-            LogPrintf("block.nStartLocation = %u \n", genesis.nStartLocation);
-            LogPrintf("block.nFinalCalculation = %u \n", genesis.nFinalCalculation);
-            consensus.hashGenesisBlock=genesis.GetHash();
-        }
-        assert(consensus.hashGenesisBlock == uint256S("0x00000f3e2c2677f55df3af6fa595b64c1aab05a54e3433d0215f4e64fdbf775c"));
-        assert(genesis.hashMerkleRoot == uint256S("0x1f38dcfad187198907c360e569afcbc359c025cef3a4d6cf37b5ab4c3a552597"));
+ 
+        assert(consensus.hashGenesisBlock == uint256S("0x00000756f93ba53f4430d786e31f6160daa1aa1c18288c9167d97c5679372029"));
+        assert(genesis.hashMerkleRoot == uint256S("0x155a90924be24bc73b56d7a62f594e76b36e9852749f90f7d6d9659b97dba1dd"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back("node1.b2x-segwit.io", false);
