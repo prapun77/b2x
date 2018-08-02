@@ -144,19 +144,33 @@ public:
 
         genesis = CreateGenesisBlock(1533212823,  5588306, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        if (false)
-        {
-            consensus.hashGenesisBlock = uint256S("0x00000f3e2c2677f55df3af6fa595b64c1aab05a54e3433d0215f4e64fdbf775c");
-            LogPrintf("recalculating params for mainnet.\n");
-            LogPrintf("old mainnet genesis nonce: %d\n", genesis.nNonce);
-            LogPrintf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
-            // deliberately empty for loop finds nonce value.
-            for(genesis.nNonce = 0; genesis.GetHash() > (~uint256S(0) >> 20); genesis.nNonce++){ }
-            LogPrintf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-            LogPrintf("new mainnet genesis nonce: %d\n", genesis.nNonce);
-            LogPrintf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+         if(genesis.GetHash() != uint256S("00000f3e2c2677f55df3af6fa595b64c1aab05a54e3433d0215f4e64fdbf775c") ){
+            arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+            uint256 thash;
+            char *scratchpad;
+            scratchpad=new char[(1<<30)];
+            while(true){
+                int collisions=0;
+                thash = genesis.FindBestPatternHash(collisions,scratchpad,8);
+                LogPrintf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(),
+                hashTarget.ToString().c_str());
+                if (UintToArith256(thash) <= hashTarget)
+                    break;
+                genesis.nNonce=genesis.nNonce+10000;
+                if (genesis.nNonce == 0){
+                    LogPrintf("NONCE WRAPPED, incrementing time\n");
+                    ++genesis.nTime;
+                }
+            }
+            delete scratchpad;
+            LogPrintf("block.nTime = %u \n", genesis.nTime);
+            LogPrintf("block.nNonce = %u \n", genesis.nNonce);
+            LogPrintf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+            LogPrintf("block.nBits = %u \n", genesis.nBits);
+            LogPrintf("block.nStartLocation = %u \n", genesis.nStartLocation);
+            LogPrintf("block.nFinalCalculation = %u \n", genesis.nFinalCalculation);
+            consensus.hashGenesisBlock=genesis.GetHash();
         }
-
         assert(consensus.hashGenesisBlock == uint256S("0x00000f3e2c2677f55df3af6fa595b64c1aab05a54e3433d0215f4e64fdbf775c"));
         assert(genesis.hashMerkleRoot == uint256S("0x1f38dcfad187198907c360e569afcbc359c025cef3a4d6cf37b5ab4c3a552597"));
 
