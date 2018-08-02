@@ -142,10 +142,10 @@ public:
         nDefaultPort = 8998;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1533212823, 5588306, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1533212823, 2145570, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000f3e2c2677f55df3af6fa595b64c1aab05a54e3433d0215f4e64fdbf775c"));
-        assert(genesis.hashMerkleRoot == uint256S("0x1f38dcfad187198907c360e569afcbc359c025cef3a4d6cf37b5ab4c3a552597"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000009879dee0c080221e0163a9bdbfd549f6f845df02a04d1266253ea0eacd6"));
+        assert(genesis.hashMerkleRoot == uint256S("0xcfb7dd1bc660a1c087619cfdf0b34f008473c2d03aee2d78d4f2680d0640f0b4"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("node1.b2x-segwit.io", false);
