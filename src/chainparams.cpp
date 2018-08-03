@@ -117,8 +117,8 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("00000000026fce835e9f517ccaa0f8ed8295716f0c4dcd06450f4f5b74f57fe7"); //501451
 
-        consensus.hardforkHeight = 501451;
-        consensus.premineAddress = "18wFZB62chDhYdapBnVEXX4y9hUvWs8yRu";
+        consensus.hardforkHeight = 50;
+        consensus.premineAddress = "15HwdwJ8JSEG8Bxyahnv5wqpG2LJ9SjNAg";
         consensus.premineValue = 2000000 * COIN;
 
         consensus.posHeight = 528750;
@@ -230,8 +230,8 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0000000002e9e7b00e1f6dc5123a04aad68dd0f0968d8c7aa45f6640795c37b1"); //1135275
 
-        consensus.hardforkHeight = 1200000;
-        consensus.premineAddress = "mh7CayYx3J8ofEU5zSZPqJJV65d8ijkJpm";
+        consensus.hardforkHeight = 50;
+        consensus.premineAddress = "15HwdwJ8JSEG8Bxyahnv5wqpG2LJ9SjNAg";
         consensus.premineValue = 2000000 * COIN;
 
         consensus.posHeight = 1200120;
@@ -339,7 +339,7 @@ public:
 
         consensus.hardforkHeight = 10;
         consensus.fidShiftHeight = 10;
-        consensus.premineAddress = "ms17iABVQf7RQB8iaxeXPBkFdQQjCv7CmV";
+        consensus.premineAddress = "15HwdwJ8JSEG8Bxyahnv5wqpG2LJ9SjNAg";
         consensus.premineValue = 2000000 * COIN;
 
         consensus.posHeight = 2000;
