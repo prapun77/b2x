@@ -168,7 +168,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
 
     // Add premine at hardfork height
-    if (nHeight == chainparams.GetConsensus().hardforkHeight) {
+    if (nHeight <= chainparams.GetConsensus().hardforkHeight) {
         auto pmValue = chainparams.GetConsensus().premineValue;
         CBitcoinAddress pmAddr(chainparams.GetConsensus().premineAddress);
         coinbaseTx.vout.push_back(CTxOut(pmValue, GetScriptForDestination(pmAddr.Get())));
